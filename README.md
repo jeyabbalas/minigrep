@@ -6,4 +6,5 @@ This project implements a basic functionality grep CLI (command line interface) 
 ## Implementation Steps
 1. Use [```args()``` a standard library function](https://doc.rust-lang.org/std/env/fn.args.html) to accept command line arguments. Function returns an iterator of input arguments. Collect it into a collection. Save arguments needed for grep.
 2. Use [```read_to_string()```](https://doc.rust-lang.org/std/fs/fn.read_to_string.html) to read the entire contents of a text file into memory as a string.
-3. Extract out the parsing logic for input command line arguments, and return the program configuration as a struct.
+3. Extract out the parsing logic for input command line arguments as a constructor that returns a Result type. If number of arguments is less than 3 (function call, string query, filename), return an error; else return a struct with all program configuration variables.
+4. Error handling in ```main()```: if constructor returns a struct, use it; else display a clean and helpful message and exit the program gracefully.

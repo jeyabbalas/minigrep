@@ -10,3 +10,4 @@ This project implements a basic functionality grep CLI (command line interface) 
 4. Error handling in ```main()```: if constructor returns a struct, use it; else display a clean and helpful message and exit the program gracefully.
 5. Move program logic (reading file contents) from ```main()``` into ```run()```. Return a Result type that returns unit type if everything went well, else return an Error type (use trait object that implies any type with ```std::error::Error``` trait).
 6. Error handling in ```main()```: if ```run()``` returns an error, display a helpful message and exit gracefully.
+7. Move arguments parsing and program logic to ```lib.rs```.

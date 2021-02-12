@@ -19,7 +19,7 @@ impl Config {
         };
 
         println!("The input query string is: {}", config.query);
-        println!("The file to be searched is: {}", config.filename);
+        println!("The file to be searched is: {}\n", config.filename);
 
         Ok(config)
     }
@@ -95,9 +95,9 @@ mod tests {
         Not, \"To who! To who!\"";
 
         let expected_result = vec!["I'm ashamed of you;",
-                                                         "You are ungrammatical",
-                                                         "In speaking as you do,",
-                                                         "You should say, \"To whom! To whom!\""];
+                                "You are ungrammatical",
+                                "In speaking as you do,",
+                                "You should say, \"To whom! To whom!\""];
 
         assert_eq!(expected_result, case_insensitive_search(query, content));
     }
@@ -113,7 +113,7 @@ mod tests {
         Not, \"To who! To who!\"";
 
         let expected_result = vec!["You are ungrammatical",
-                                                         "You should say, \"To whom! To whom!\""];
+                                "You should say, \"To whom! To whom!\""];
 
         assert_eq!(expected_result, search(query, content));
     }

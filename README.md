@@ -6,7 +6,11 @@ This project implements a basic functionality grep CLI (command line interface) 
 ## Usage
 Download the executable binary at ```./target/release/minigrep```. Run it in command line using the Terminal app in a macOS system as follows.
 
-The above command runs case-sensitive search by default. To run case-insensitive search, set environment variable ```CASE_INSENSITIVE`` to any value, as shown below.
+```
+$> minigrep string_query filename.txt
+```
+
+Here, *string_query* is a string being searched in *filename.txt*, a text file. By default, the above command runs a case-sensitive search. To run case-insensitive search, set environment variable ```CASE_INSENSITIVE`` to any value, as shown below.
 
 ```
 $> CASE_INSENSITIVE=1 minigrep string_query filename.txt
@@ -23,3 +27,4 @@ $> CASE_INSENSITIVE=1 minigrep string_query filename.txt
 8. **Test-driven development**: Write a test to evaluate the as yet to be implemented method ```search()``` in ```lib.rs```, which returns lines in a text that contains a queried string. Implement an empty ```search()```, which fails. Implement minimal logic to pass the test.
 9. Call ```search()``` from ```run()```.
 10. Write tests for case-sensitive and -insensitive search function. Check if ```CASE_INSENSITIVE``` environment variable is set, if so, run case-insensitive search, else run case sensitive search.
+11. Move error messages from standard output to standard error.

@@ -8,3 +8,5 @@ This project implements a basic functionality grep CLI (command line interface) 
 2. Use [```read_to_string()```](https://doc.rust-lang.org/std/fs/fn.read_to_string.html) to read the entire contents of a text file into memory as a string.
 3. Extract out the parsing logic for input command line arguments as a constructor that returns a Result type. If number of arguments is less than 3 (function call, string query, filename), return an error; else return a struct with all program configuration variables.
 4. Error handling in ```main()```: if constructor returns a struct, use it; else display a clean and helpful message and exit the program gracefully.
+5. Move program logic (reading file contents) from ```main()``` into ```run()```. Return a Result type that returns unit type if everything went well, else return an Error type (use trait object that implies any type with ```std::error::Error``` trait).
+6. Error handling in ```main()```: if ```run()``` returns an error, display a helpful message and exit gracefully.

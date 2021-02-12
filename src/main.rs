@@ -1,4 +1,4 @@
-use std::{env, fs, process};
+use std::{env, fs, process, error::Error};
 
 struct Config {
     query: String,
@@ -16,8 +16,19 @@ impl Config {
             filename: args[2].clone(),
         };
 
+        println!("The input query string is: {}", config.query);
+        println!("The file to be searched is: {}", config.filename);
+
         Ok(config)
     }
+}
+
+fn run(config: Config) -> Result<(), Box<dyn Error>> {
+    let contents = fs::read_to_string(config.filename)?;
+
+    println!("File contents:\n{}", contents);
+
+    Ok(())
 }
 
 fn main() {
@@ -28,10 +39,9 @@ fn main() {
         process::exit(1);
     });
 
-    println!("The input query string is: {}", config.query);
-    println!("The file to be searched is: {}", config.filename);
-
-    let contents = fs::read_to_string(config.filename).unwrap();
-
-    println!("File contents:\n{}", contents);
+    if let Err(e) = run(config) {
+        println!("Error while reading input file: {}.", e);
+        process::exit(1);
+    }
+    
 }

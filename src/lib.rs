@@ -7,21 +7,29 @@ pub struct Config {
 }
 
 impl Config {
-    pub fn new(args: &[String]) -> Result<Self, &'static str> {
-        if args.len() < 3 {
-            return Err("Insufficient arguments.");
-        }
+    pub fn new(mut args: env::Args) -> Result<Self, &'static str> {
+        args.next();
 
-        let config = Self {
-            query: args[1].clone(),
-            filename: args[2].clone(),
-            case_insensitive: !env::var("CASE_INSENSITIVE").is_err(),
+        let query = match args.next() {
+            Some(q) => {q},
+            None => {return Err("Error: query string not specified.");},
         };
 
-        println!("The input query string is: {}", config.query);
-        println!("The file to be searched is: {}\n", config.filename);
+        let filename = match args.next() {
+            Some(f) => {f},
+            None => {return Err("Error: file not specified.");},
+        };
 
-        Ok(config)
+        let case_insensitive = !env::var("CASE_INSENSITIVE").is_err();
+        
+        println!("The input query string is: {}", query);
+        println!("The file to be searched is: {}\n", filename);
+
+        Ok(Self{
+            query,
+            filename,
+            case_insensitive,
+        })
     }
 }
 

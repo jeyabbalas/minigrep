@@ -28,3 +28,5 @@ $> CASE_INSENSITIVE=1 minigrep string_query filename.txt
 9. Call ```search()``` from ```run()```.
 10. Write tests for case-sensitive and -insensitive search function. Check if ```CASE_INSENSITIVE``` environment variable is set, if so, run case-insensitive search, else run case sensitive search.
 11. Move error messages from standard output to standard error.
+12. Function ```env::args()``` returns an iterator of type ```Args```. Make ```Config::new()``` take mutable ownership of this iterator (to consume with ```next()```) and directly move the values into ```Config``` by calling ```next()```.
+13. Use iterator adapter methods to reduce the number of mutable states in ```search()``` i.e. progressively adding results to a mutable collection (vector). Functional programming style prefers fewer mutable states to make it concise and it makes concurrency easier.
